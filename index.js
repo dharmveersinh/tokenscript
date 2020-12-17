@@ -14,7 +14,7 @@ var getdata = async () => {
             var web3 = new Web3(new Web3.providers.HttpProvider("https://mainnet.infura.io/v3/b0814c44f1de43a1b2024f2c08f0eddc"));
             data.json().then(async (data) => {
                 console.log(data.length);
-                for(var i = 0; i<data.length; i++){
+                for(var i = 0; i<2; i++){
                     console.log(data[i]);
                     var contract = new web3.eth.Contract(abi, data[i]);
                     tokenaddress = data[i];
@@ -34,7 +34,7 @@ var getdata = async () => {
                                 }catch(err){
 
                                 }
-                                var value = `${symbol}`;
+                                var value = `${tokenaddress}`;
                                 returndata[value]={"name":json.name, "symbol": symbol, "decimals": decimal, "image": basepath+tokenaddress+"/logo.png"};
                                 // returndata.push();
                             })
@@ -52,7 +52,7 @@ var getdata = async () => {
                             
                             console.log("Name",name);
                             console.log("Symbol",symbol);
-                            returndata[symbol]={"name":name, "symbol": symbol, "decimals": decimal, "image": basepath+tokenaddress+"/logo.png"};
+                            returndata[tokenaddress]={"name":name, "symbol": symbol, "decimals": decimal, "image": basepath+tokenaddress+"/logo.png"};
                             // returndata.push({ [symbol]: {"name":name, "image": basepath+tokenaddress+"/logo.png"}});
                         }
                         resolve(true);
